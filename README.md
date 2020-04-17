@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.0.1 -- 2020-04-17
+
+    - fix conception notes typo
+    
 - 1.0.0 -- 2020-04-17
 
     - initial commit

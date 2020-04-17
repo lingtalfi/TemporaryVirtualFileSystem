@@ -119,9 +119,9 @@ The heuristics described below take that into account.
 
 
 - add: 
-    0- If no entry exists with the same url then the entry is added with type=add.
+    - If no entry exists with the same url then the entry is added with type=add.
     
-    0- If an "add" entry already exists with the same url then the vfs might choose to reject the call, or to update the existing entry, but keeping the type (type="add").
+    - If an "add" entry already exists with the same url then the vfs might choose to reject the call, or to update the existing entry, but keeping the type (type="add").
     
     - If an "update" entry already exists with the same url (this shouldn't happen), the vfs rejects the operation. 
     
@@ -129,23 +129,23 @@ The heuristics described below take that into account.
     
 
 - update:
-    0- If no entry exists with the same url then the entry is added with type=update.
+    - If no entry exists with the same url then the entry is added with type=update.
     
-    0- If an "add" entry already exists with the same url then the entry is updated, but it's type remains unchanged (type=add).
+    - If an "add" entry already exists with the same url then the entry is updated, but it's type remains unchanged (type=add).
     
-    0- If an "update" entry already exists with the same url then the entry is updated, and it's type remains unchanged (type=update).
+    - If an "update" entry already exists with the same url then the entry is updated, and it's type remains unchanged (type=update).
     
-    0- If a "remove" entry already exists with the same url (note that it doesn't make much sense gui wise), the remove entry is (removed and) replaced with the new entry of type=update.
+    - If a "remove" entry already exists with the same url (note that it doesn't make much sense gui wise), the remove entry is (removed and) replaced with the new entry of type=update.
 
 
 - delete:
-    0- If no entry exists with the same url then the entry is added with type=delete.
+    - If no entry exists with the same url then the entry is added with type=delete.
     
-    0- If an "add" entry already exists with the same url then the entry is deleted.
+    - If an "add" entry already exists with the same url then the entry is deleted.
     
-    0- If an "update" entry already exists with the same url then the entry is deleted and replaced with a "remove" entry.
+    - If an "update" entry already exists with the same url then the entry is deleted and replaced with a "remove" entry.
     
-    0- If a "remove" entry already exists with the same url, this operation has no effect.
+    - If a "remove" entry already exists with the same url, this operation has no effect.
 
 
 
