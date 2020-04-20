@@ -45,12 +45,20 @@ interface TemporaryVirtualFileSystemInterface
      *
      * Throws an exception if the file doesn't exist or in case of a problem.
      *
+     * The options are:
+     * - realpath: bool=false. If true, the **realpath** entry is added to the returned array, and contains the
+     *          realpath to the file. This only works if the operation type allows it (i.e. not delete).
+     *
+     *
+     *
+     *
      * @param string $contextId
      * @param string $id
+     * @param array $options
      * @return array
      * @throws \Exception
      */
-    public function get(string $contextId, string $id): array;
+    public function get(string $contextId, string $id, array $options = []): array;
 
 
     /**
@@ -106,5 +114,6 @@ interface TemporaryVirtualFileSystemInterface
      * @param array $meta
      */
     public function update(string $contextId, string $id, string $path, array $meta);
+
 
 }

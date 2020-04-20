@@ -16,12 +16,16 @@ Description
 ================
 
 
-protected [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getEntry.md)(string $contextId, string $id) : array
+protected [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getEntry.md)(string $contextId, string $id, ?array $options = []) : array
 
 
 
 
 Returns the entry in the operations.byml file of the given context that matches the given id.
+
+The options are:
+- realpath: bool=false. If true, the **realpath** entry is added to the returned array, and contains the
+         realpath to the file. This only works if the operation type allows it (i.e. not delete).
 
 
 
@@ -35,6 +39,10 @@ Parameters
     
 
 - id
+
+    
+
+- options
 
     
 
@@ -58,7 +66,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L363-L376)
+See the source code for method [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L373-L396)
 
 
 See Also

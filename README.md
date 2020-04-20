@@ -38,7 +38,11 @@ Summary
 History Log
 =============
 
-- 1.1.1 -- 2020-04-20
+- 1.2.0 -- 2020-04-20
+
+    - add TemporaryVirtualFileSystemInterface->get options parameter with realpath entry
+    
+- 1.1.0 -- 2020-04-20
 
     - update file url is now file id
     

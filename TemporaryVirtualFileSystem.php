@@ -106,9 +106,9 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * @implementation
      */
-    public function get(string $contextId, string $id): array
+    public function get(string $contextId, string $id, array $options = []): array
     {
-        return $this->getEntry($contextId, $id);
+        return $this->getEntry($contextId, $id, $options);
     }
 
     /**
@@ -146,6 +146,10 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     {
         $this->updateEntry($contextId, $id, $path, $meta);
     }
+
+
+
+
 
 
 
@@ -355,18 +359,34 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * Returns the entry in the operations.byml file of the given context that matches the given id.
      *
+     * The options are:
+     * - realpath: bool=false. If true, the **realpath** entry is added to the returned array, and contains the
+     *          realpath to the file. This only works if the operation type allows it (i.e. not delete).
+     *
+     *
      * @param string $contextId
      * @param string $id
+     * @param array $options
      * @return array
      * @throws \Exception
      */
-    protected function getEntry(string $contextId, string $id): array
+    protected function getEntry(string $contextId, string $id, array $options = []): array
     {
+
+        $useRealpath = (bool)($options['realpath'] ?? false);
 
         $opFile = $this->getOperationsFile($contextId);
         $ops = BabyYamlUtil::readFile($opFile);
         foreach ($ops as $op) {
             if ($id === $op['id']) {
+
+                if (true === $useRealpath) {
+                    if ('delete' === $op['type']) {
+                        $this->error("Cannot get realpath from a delete operation, with contextId=\"$contextId\" and id=\"$id\".");
+                    }
+                    $op['realpath'] = $this->getContextDir($contextId) . "/files/" . $op['path'];
+                }
+
                 return $op;
             }
         }

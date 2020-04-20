@@ -16,7 +16,7 @@ Description
 ================
 
 
-abstract public [TemporaryVirtualFileSystemInterface::get](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/get.md)(string $contextId, string $id) : array
+abstract public [TemporaryVirtualFileSystemInterface::get](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/get.md)(string $contextId, string $id, ?array $options = []) : array
 
 
 
@@ -25,6 +25,10 @@ Returns the commit list entry attached to the given id in the given context.
 See the [temporary virtual file system conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md) for more details.
 
 Throws an exception if the file doesn't exist or in case of a problem.
+
+The options are:
+- realpath: bool=false. If true, the **realpath** entry is added to the returned array, and contains the
+         realpath to the file. This only works if the operation type allows it (i.e. not delete).
 
 
 
@@ -38,6 +42,10 @@ Parameters
     
 
 - id
+
+    
+
+- options
 
     
 
@@ -61,7 +69,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystemInterface::get](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L53-L53)
+See the source code for method [TemporaryVirtualFileSystemInterface::get](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L61-L61)
 
 
 See Also

@@ -55,7 +55,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystemInterface::remove](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L96-L96)
+See the source code for method [TemporaryVirtualFileSystemInterface::remove](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L104-L104)
 
 
 See Also
