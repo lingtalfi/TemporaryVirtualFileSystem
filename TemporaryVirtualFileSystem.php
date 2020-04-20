@@ -274,9 +274,17 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                 $type = $op['type'];
                 switch ($type) {
                     case "add":
+                        $realpath = $this->getEntryRealPathByOperation($contextId, $op);
+                        if (file_exists($realpath)) {
+                            unlink($realpath);
+                        }
                         unset($ops[$k]);
                         break;
                     case "update":
+                        $realpath = $this->getEntryRealPathByOperation($contextId, $op);
+                        if (file_exists($realpath)) {
+                            unlink($realpath);
+                        }
                         unset($ops[$k]);
                         $addTheDeleteEntry = true;
                         break;
@@ -381,10 +389,8 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
             if ($id === $op['id']) {
 
                 if (true === $useRealpath) {
-                    if ('delete' === $op['type']) {
-                        $this->error("Cannot get realpath from a delete operation, with contextId=\"$contextId\" and id=\"$id\".");
-                    }
-                    $op['realpath'] = $this->getContextDir($contextId) . "/files/" . $op['path'];
+
+                    $op['realpath'] = $this->getEntryRealPathByOperation($contextId, $op);
                 }
 
                 return $op;
@@ -486,5 +492,26 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
             $this->error("File does not exist: \"$path\".");
         }
         return $ret;
+    }
+
+
+    /**
+     * Returns the realpath of the file associated with the given operation entry.
+     *
+     * Throws an exception if the operation doesn't have a file associated with it (i.e. delete operation).
+     *
+     *
+     * @param string $contextId
+     * @param array $operation
+     * @return string
+     * @throws \Exception
+     */
+    private function getEntryRealPathByOperation(string $contextId, array $operation): string
+    {
+        if ('delete' === $operation['type']) {
+            $id = $operation['id'];
+            $this->error("Cannot get realpath from a delete operation, with contextId=\"$contextId\" and id=\"$id\".");
+        }
+        return $this->getContextDir($contextId) . "/files/" . $operation['path'];
     }
 }

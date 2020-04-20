@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.2.1 -- 2020-04-20
+
+    - fix TemporaryVirtualFileSystem->removeEntry not removing the associated binary file
+    
 - 1.2.0 -- 2020-04-20
 
     - add TemporaryVirtualFileSystemInterface->get options parameter with realpath entry

@@ -140,9 +140,9 @@ The heuristics described below take that into account.
 - delete:
     - If no entry exists with the same id then the entry is added with type=delete.
     
-    - If an "add" entry already exists with the same id then the entry is deleted.
-    
-    - If an "update" entry already exists with the same id then the entry is deleted and replaced with a "remove" entry.
+    - If an "add" entry already exists with the same id then the entry is deleted. And any attached binary file along with it.
+     
+    - If an "update" entry already exists with the same id then the entry is deleted and replaced with a "remove" entry. And any attached binary file along with it.
     
     - If a "remove" entry already exists with the same id, this operation has no effect.
 
