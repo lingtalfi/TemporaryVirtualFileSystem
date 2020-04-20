@@ -24,7 +24,7 @@ abstract public [TemporaryVirtualFileSystemInterface::add](https://github.com/li
 Adds an "add" operation to the commit list for the file identified by the given parameters,
 and returns the added entry, which is an array containing at least the following:
 
-- url: string, the url to access the uploaded file
+- id: string, the id to access the uploaded file
 - meta: array, an array of meta information that the application might provide
 
 

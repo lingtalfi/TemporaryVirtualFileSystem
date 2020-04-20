@@ -1,6 +1,6 @@
 TemporaryVirtualFileSystem
 ===========
-2020-04-17
+2020-04-17 -> 2020-04-20
 
 
 
@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.1.1 -- 2020-04-20
+
+    - update file url is now file id
+    
 - 1.0.1 -- 2020-04-17
 
     - fix conception notes typo

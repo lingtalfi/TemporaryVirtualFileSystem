@@ -74,16 +74,16 @@ The **commit** operation returns a **commit list** which your app can use as ins
 The heuristics about how the different operations interact with each other is described in the **heuristics** section of this document.
 
 
-The **get**, **has**, **remove** and **update** operations require an identifier for the file. That identifier is the file **url**, which must start with a slash (i.e. drop the domain name).
+The **get**, **has**, **remove** and **update** operations require an identifier for the file. That identifier can be the file **url**, or any other identifier that you like.
 
 
 
 The operations are stored like this in the **vfs**:
 
+- id: string, the file identifier
 - type: string, the type of operation to execute on the real server (add, remove or update)
 - ?path: string, the path to the uploaded file
 - ?meta: array, the meta attached to the file
-- url: string, the url identifying the file
 
 
 The **path** and **meta** properties are available for the **add** and **update** operations, but not the **delete** operation. 
@@ -96,8 +96,7 @@ This information is returned as an array when you call the **get** method.
 I use [babyYaml](https://github.com/lingtalfi/BabyYaml) files as the storage, for the readability.
 
 
-When you call the **add** method, it returns you the operation entry stored in the **vfs**, which contains the url,
-so that the user can keep interacting with the file (i.e. delete, update). 
+When you call the **add** method, it returns you the operation entry stored in the **vfs**, so that the user can keep interacting with the file (i.e. delete, update). 
 
 
 When the **commit** method is called, the list of all stored operations is accessible to the commit handler, which is the
@@ -119,33 +118,33 @@ The heuristics described below take that into account.
 
 
 - add: 
-    - If no entry exists with the same url then the entry is added with type=add.
+    - If no entry exists with the same id then the entry is added with type=add.
     
-    - If an "add" entry already exists with the same url then the vfs might choose to reject the call, or to update the existing entry, but keeping the type (type="add").
+    - If an "add" entry already exists with the same id then the vfs might choose to reject the call, or to update the existing entry, but keeping the type (type="add").
     
-    - If an "update" entry already exists with the same url (this shouldn't happen), the vfs rejects the operation. 
+    - If an "update" entry already exists with the same id (this shouldn't happen), the vfs rejects the operation. 
     
-    - If a "remove" entry already exists with the same url (this shouldn't happen), the vfs rejects the operation. 
+    - If a "remove" entry already exists with the same id (this shouldn't happen), the vfs rejects the operation. 
     
 
 - update:
-    - If no entry exists with the same url then the entry is added with type=update.
+    - If no entry exists with the same id then the entry is added with type=update.
     
-    - If an "add" entry already exists with the same url then the entry is updated, but it's type remains unchanged (type=add).
+    - If an "add" entry already exists with the same id then the entry is updated, but it's type remains unchanged (type=add).
     
-    - If an "update" entry already exists with the same url then the entry is updated, and it's type remains unchanged (type=update).
+    - If an "update" entry already exists with the same id then the entry is updated, and it's type remains unchanged (type=update).
     
-    - If a "remove" entry already exists with the same url (note that it doesn't make much sense gui wise), the remove entry is (removed and) replaced with the new entry of type=update.
+    - If a "remove" entry already exists with the same id (note that it doesn't make much sense gui wise), the remove entry is (removed and) replaced with the new entry of type=update.
 
 
 - delete:
-    - If no entry exists with the same url then the entry is added with type=delete.
+    - If no entry exists with the same id then the entry is added with type=delete.
     
-    - If an "add" entry already exists with the same url then the entry is deleted.
+    - If an "add" entry already exists with the same id then the entry is deleted.
     
-    - If an "update" entry already exists with the same url then the entry is deleted and replaced with a "remove" entry.
+    - If an "update" entry already exists with the same id then the entry is deleted and replaced with a "remove" entry.
     
-    - If a "remove" entry already exists with the same url, this operation has no effect.
+    - If a "remove" entry already exists with the same id, this operation has no effect.
 
 
 

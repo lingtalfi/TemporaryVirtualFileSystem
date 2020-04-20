@@ -26,7 +26,7 @@ use Ling\TemporaryVirtualFileSystem\Exception\TemporaryVirtualFileSystemExceptio
  * is handled). It's an array of operations, each operation:
  *
  * - type: string (add|remove|update). The operation type (to execute on the real system).
- * - url: string. The file url which serves as an identifier. It should always start with a slash (for now).
+ * - id: string. The file identifier.
  * - path: string. The relative path (from the contextDir's files directory) to the uploaded file
  * - meta: array. An array of meta containing whatever you want.
  *
@@ -37,7 +37,7 @@ use Ling\TemporaryVirtualFileSystem\Exception\TemporaryVirtualFileSystemExceptio
  *
  * See the heuristic section of the @page(TemporaryVirtualFileSystem conception notes).
  *
- * For the **add** operation, in case an add operation already exists with the same url, we update the operation (rather than
+ * For the **add** operation, in case an add operation already exists with the same id, we update the operation (rather than
  * rejecting the request).
  *
  *
@@ -106,17 +106,17 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * @implementation
      */
-    public function get(string $contextId, string $url): array
+    public function get(string $contextId, string $id): array
     {
-        return $this->getEntry($contextId, $url);
+        return $this->getEntry($contextId, $id);
     }
 
     /**
      * @implementation
      */
-    public function has(string $contextId, string $url, array $allowedTypes = null): bool
+    public function has(string $contextId, string $id, array $allowedTypes = null): bool
     {
-        return $this->hasEntry($contextId, $url, $allowedTypes);
+        return $this->hasEntry($contextId, $id, $allowedTypes);
     }
 
 
@@ -125,26 +125,26 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      */
     public function add(string $contextId, string $path, array $meta): array
     {
-        $url = $this->getFileUrl($contextId, $path, $meta);
-        return $this->addEntry($contextId, $url, $path, $meta);
+        $id = $this->getFileId($contextId, $path, $meta);
+        return $this->addEntry($contextId, $id, $path, $meta);
     }
 
 
     /**
      * @implementation
      */
-    public function remove(string $contextId, string $url)
+    public function remove(string $contextId, string $id)
     {
-        $this->removeEntry($contextId, $url);
+        $this->removeEntry($contextId, $id);
     }
 
 
     /**
      * @implementation
      */
-    public function update(string $contextId, string $url, string $path, array $meta)
+    public function update(string $contextId, string $id, string $path, array $meta)
     {
-        $this->updateEntry($contextId, $url, $path, $meta);
+        $this->updateEntry($contextId, $id, $path, $meta);
     }
 
 
@@ -164,13 +164,13 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      *
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @param string $path
      * @param array $meta
      * @param array $options
      * @return array
      */
-    protected function addEntry(string $contextId, string $url, string $path, array $meta, array $options = []): array
+    protected function addEntry(string $contextId, string $id, string $path, array $meta, array $options = []): array
     {
         $path = $this->getRealPath($path);
 
@@ -184,12 +184,12 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         }
 
 
-        $relPath = $this->getFileRelativePath($contextId, $url, $path, $meta);
+        $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
         FileSystemTool::copyFile($path, $this->getContextDir($contextId) . "/files/" . $relPath);
 
         $addOperation = [
             'type' => $type,
-            'url' => $url,
+            'id' => $id,
             'path' => $relPath,
             'meta' => $meta,
         ];
@@ -200,7 +200,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         //--------------------------------------------
         $found = false;
         foreach ($ops as $k => $op) {
-            if ($url === $op['url']) {
+            if ($id === $op['id']) {
                 $found = true;
                 $type = $op['type'];
                 switch ($type) {
@@ -208,7 +208,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                         $ops[$k] = $addOperation;
                         break;
                     default:
-                        $this->error("Operation \"$type\" rejected. You cannot add this entry because it already exists with type=\"$type\" for url \"$url\".");
+                        $this->error("Operation \"$type\" rejected. You cannot add this entry because it already exists with type=\"$type\" for id \"$id\".");
                         break;
                 }
             }
@@ -223,14 +223,14 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     }
 
     /**
-     * Returns whether there is an non-deleted entry found in the the operations.byml file of the given context that matches the given url.
+     * Returns whether there is an non-deleted entry found in the the operations.byml file of the given context that matches the given id.
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @param array|null $allowedTypes
      * @return bool
      */
-    protected function hasEntry(string $contextId, string $url, array $allowedTypes = null): bool
+    protected function hasEntry(string $contextId, string $id, array $allowedTypes = null): bool
     {
         $opFile = $this->getOperationsFile($contextId);
         $ops = BabyYamlUtil::readFile($opFile);
@@ -240,7 +240,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
             if (false === in_array($op['type'], $types)) {
                 continue;
             }
-            if ($url === $op['url']) {
+            if ($id === $op['id']) {
                 return true;
             }
         }
@@ -248,13 +248,13 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     }
 
     /**
-     * Removes the entry from the operations.byml file of the given context that matches the given url.
+     * Removes the entry from the operations.byml file of the given context that matches the given id.
      * If the entry didn't exist, the method will be silent.
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      */
-    protected function removeEntry(string $contextId, string $url)
+    protected function removeEntry(string $contextId, string $id)
     {
         $opFile = $this->getOperationsFile($contextId);
         $ops = BabyYamlUtil::readFile($opFile);
@@ -265,7 +265,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
          */
         $addTheDeleteEntry = true;
         foreach ($ops as $k => $op) {
-            if ($url === $op['url']) {
+            if ($id === $op['id']) {
                 $addTheDeleteEntry = false;
                 $type = $op['type'];
                 switch ($type) {
@@ -284,7 +284,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         if (true === $addTheDeleteEntry) {
             $ops[] = [
                 'type' => "remove",
-                'url' => $url,
+                'id' => $id,
             ];
         }
 
@@ -294,16 +294,16 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     }
 
     /**
-     * Updates the entry in the operations.byml file of the given context that matches the given url.
+     * Updates the entry in the operations.byml file of the given context that matches the given id.
      *
      * Throws an exception if the file wasn't found, or in case of problems.
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @param string $path
      * @param array $meta
      */
-    protected function updateEntry(string $contextId, string $url, string $path, array $meta)
+    protected function updateEntry(string $contextId, string $id, string $path, array $meta)
     {
         $path = $this->getRealPath($path);
 
@@ -313,10 +313,10 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
         $found = false;
         foreach ($ops as $k => $op) {
-            if ($url === $op['url']) {
+            if ($id === $op['id']) {
                 $found = true;
 
-                $relPath = $this->getFileRelativePath($contextId, $url, $path, $meta);
+                $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
                 FileSystemTool::copyFile($path, $this->getContextDir($contextId) . "/files/" . $relPath);
 
 
@@ -331,7 +331,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                     case "remove":
                         $ops[$k] = [
                             "type" => "update",
-                            "url" => $url,
+                            "id" => $id,
                             "path" => $relPath,
                             "meta" => $meta,
                         ];
@@ -343,7 +343,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         }
 
         if (false === $found) {
-            $this->addEntry($contextId, $url, $path, $meta, [
+            $this->addEntry($contextId, $id, $path, $meta, [
                 "type" => "update",
             ]);
         } else {
@@ -353,25 +353,25 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     }
 
     /**
-     * Returns the entry in the operations.byml file of the given context that matches the given url.
+     * Returns the entry in the operations.byml file of the given context that matches the given id.
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @return array
      * @throws \Exception
      */
-    protected function getEntry(string $contextId, string $url): array
+    protected function getEntry(string $contextId, string $id): array
     {
 
         $opFile = $this->getOperationsFile($contextId);
         $ops = BabyYamlUtil::readFile($opFile);
         foreach ($ops as $op) {
-            if ($url === $op['url']) {
+            if ($id === $op['id']) {
                 return $op;
             }
         }
 
-        $this->error("Entry not found with url=\"$url\" and contextId=\"$contextId\".");
+        $this->error("Entry not found with id=\"$id\" and contextId=\"$contextId\".");
 
     }
 
@@ -414,26 +414,26 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      *
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @param string $path
      * @param array $meta
      * @return string
      */
-    protected function getFileRelativePath(string $contextId, string $url, string $path, array $meta): string
+    protected function getFileRelativePath(string $contextId, string $id, string $path, array $meta): string
     {
         return trim($path, '/');
     }
 
 
     /**
-     * Returns the file url for the file identified by the given parameters.
+     * Returns the file id for the file identified by the given parameters.
      *
      * @param string $contextId
      * @param string $path
      * @param array $meta
      * @return string
      */
-    abstract protected function getFileUrl(string $contextId, string $path, array $meta): string;
+    abstract protected function getFileId(string $contextId, string $path, array $meta): string;
 
 
     //--------------------------------------------

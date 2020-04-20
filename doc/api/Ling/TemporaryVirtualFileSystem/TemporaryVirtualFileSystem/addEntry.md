@@ -16,7 +16,7 @@ Description
 ================
 
 
-protected [TemporaryVirtualFileSystem::addEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/addEntry.md)(string $contextId, string $url, string $path, array $meta, ?array $options = []) : array
+protected [TemporaryVirtualFileSystem::addEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/addEntry.md)(string $contextId, string $id, string $path, array $meta, ?array $options = []) : array
 
 
 
@@ -41,7 +41,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

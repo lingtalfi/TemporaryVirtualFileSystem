@@ -7,7 +7,7 @@ TemporaryVirtualFileSystem::hasEntry
 
 
 
-TemporaryVirtualFileSystem::hasEntry — Returns whether there is an non-deleted entry found in the the operations.byml file of the given context that matches the given url.
+TemporaryVirtualFileSystem::hasEntry — Returns whether there is an non-deleted entry found in the the operations.byml file of the given context that matches the given id.
 
 
 
@@ -16,12 +16,12 @@ Description
 ================
 
 
-protected [TemporaryVirtualFileSystem::hasEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/hasEntry.md)(string $contextId, string $url, ?array $allowedTypes = null) : bool
+protected [TemporaryVirtualFileSystem::hasEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/hasEntry.md)(string $contextId, string $id, ?array $allowedTypes = null) : bool
 
 
 
 
-Returns whether there is an non-deleted entry found in the the operations.byml file of the given context that matches the given url.
+Returns whether there is an non-deleted entry found in the the operations.byml file of the given context that matches the given id.
 
 
 
@@ -34,7 +34,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

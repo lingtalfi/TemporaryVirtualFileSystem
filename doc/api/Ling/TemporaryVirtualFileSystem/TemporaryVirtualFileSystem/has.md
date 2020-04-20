@@ -7,7 +7,7 @@ TemporaryVirtualFileSystem::has
 
 
 
-TemporaryVirtualFileSystem::has — Returns whether the server has an entry identified by the given url and contextId.
+TemporaryVirtualFileSystem::has — Returns whether the server has an entry identified by the given id and contextId.
 
 
 
@@ -16,12 +16,12 @@ Description
 ================
 
 
-public [TemporaryVirtualFileSystem::has](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/has.md)(string $contextId, string $url, ?array $allowedTypes = null) : bool
+public [TemporaryVirtualFileSystem::has](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/has.md)(string $contextId, string $id, ?array $allowedTypes = null) : bool
 
 
 
 
-Returns whether the server has an entry identified by the given url and contextId.
+Returns whether the server has an entry identified by the given id and contextId.
 
 You can specify in which type to search with the allowedTypes parameter.
 By default (with allowedTypes=null) it will search in all entry types.
@@ -37,7 +37,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

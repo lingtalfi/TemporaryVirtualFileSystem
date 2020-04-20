@@ -7,7 +7,7 @@ TemporaryVirtualFileSystem::removeEntry
 
 
 
-TemporaryVirtualFileSystem::removeEntry — Removes the entry from the operations.byml file of the given context that matches the given url.
+TemporaryVirtualFileSystem::removeEntry — Removes the entry from the operations.byml file of the given context that matches the given id.
 
 
 
@@ -16,12 +16,12 @@ Description
 ================
 
 
-protected [TemporaryVirtualFileSystem::removeEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/removeEntry.md)(string $contextId, string $url) : void
+protected [TemporaryVirtualFileSystem::removeEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/removeEntry.md)(string $contextId, string $id) : void
 
 
 
 
-Removes the entry from the operations.byml file of the given context that matches the given url.
+Removes the entry from the operations.byml file of the given context that matches the given id.
 If the entry didn't exist, the method will be silent.
 
 
@@ -35,7 +35,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

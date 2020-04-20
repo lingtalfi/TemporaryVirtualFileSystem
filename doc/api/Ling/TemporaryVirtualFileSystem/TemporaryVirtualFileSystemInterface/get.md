@@ -7,7 +7,7 @@ TemporaryVirtualFileSystemInterface::get
 
 
 
-TemporaryVirtualFileSystemInterface::get — Returns the commit list entry attached to the given url in the given context.
+TemporaryVirtualFileSystemInterface::get — Returns the commit list entry attached to the given id in the given context.
 
 
 
@@ -16,12 +16,12 @@ Description
 ================
 
 
-abstract public [TemporaryVirtualFileSystemInterface::get](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/get.md)(string $contextId, string $url) : array
+abstract public [TemporaryVirtualFileSystemInterface::get](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/get.md)(string $contextId, string $id) : array
 
 
 
 
-Returns the commit list entry attached to the given url in the given context.
+Returns the commit list entry attached to the given id in the given context.
 See the [temporary virtual file system conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md) for more details.
 
 Throws an exception if the file doesn't exist or in case of a problem.
@@ -37,7 +37,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

@@ -7,7 +7,7 @@ TemporaryVirtualFileSystem::getEntry
 
 
 
-TemporaryVirtualFileSystem::getEntry — Returns the entry in the operations.byml file of the given context that matches the given url.
+TemporaryVirtualFileSystem::getEntry — Returns the entry in the operations.byml file of the given context that matches the given id.
 
 
 
@@ -16,12 +16,12 @@ Description
 ================
 
 
-protected [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getEntry.md)(string $contextId, string $url) : array
+protected [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getEntry.md)(string $contextId, string $id) : array
 
 
 
 
-Returns the entry in the operations.byml file of the given context that matches the given url.
+Returns the entry in the operations.byml file of the given context that matches the given id.
 
 
 
@@ -34,7 +34,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

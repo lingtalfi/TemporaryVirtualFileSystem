@@ -16,7 +16,7 @@ Description
 ================
 
 
-abstract public [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md)(string $contextId, string $url, string $path, array $meta) : void
+abstract public [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md)(string $contextId, string $id, string $path, array $meta) : void
 
 
 
@@ -36,7 +36,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

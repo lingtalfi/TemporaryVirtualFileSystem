@@ -7,7 +7,7 @@ TemporaryVirtualFileSystemInterface::remove
 
 
 
-TemporaryVirtualFileSystemInterface::remove — Adds a "remove" operation to the commit list for the given url and context.
+TemporaryVirtualFileSystemInterface::remove — Adds a "remove" operation to the commit list for the given id and context.
 
 
 
@@ -16,12 +16,12 @@ Description
 ================
 
 
-abstract public [TemporaryVirtualFileSystemInterface::remove](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/remove.md)(string $contextId, string $url) : void
+abstract public [TemporaryVirtualFileSystemInterface::remove](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/remove.md)(string $contextId, string $id) : void
 
 
 
 
-Adds a "remove" operation to the commit list for the given url and context.
+Adds a "remove" operation to the commit list for the given id and context.
 
 For more details see the heuristic section of the [TemporaryVirtualFileSystem conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md).
 
@@ -36,7 +36,7 @@ Parameters
 
     
 
-- url
+- id
 
     
 

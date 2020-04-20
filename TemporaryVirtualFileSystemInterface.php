@@ -40,38 +40,38 @@ interface TemporaryVirtualFileSystemInterface
 
 
     /**
-     * Returns the commit list entry attached to the given url in the given context.
+     * Returns the commit list entry attached to the given id in the given context.
      * See the @page(temporary virtual file system conception notes) for more details.
      *
      * Throws an exception if the file doesn't exist or in case of a problem.
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @return array
      * @throws \Exception
      */
-    public function get(string $contextId, string $url): array;
+    public function get(string $contextId, string $id): array;
 
 
     /**
-     * Returns whether the server has an entry identified by the given url and contextId.
+     * Returns whether the server has an entry identified by the given id and contextId.
      *
      * You can specify in which type to search with the allowedTypes parameter.
      * By default (with allowedTypes=null) it will search in all entry types.
      *
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @param array|null $allowedTypes
      * @return bool
      */
-    public function has(string $contextId, string $url, array $allowedTypes = null): bool;
+    public function has(string $contextId, string $id, array $allowedTypes = null): bool;
 
     /**
      * Adds an "add" operation to the commit list for the file identified by the given parameters,
      * and returns the added entry, which is an array containing at least the following:
      *
-     * - url: string, the url to access the uploaded file
+     * - id: string, the id to access the uploaded file
      * - meta: array, an array of meta information that the application might provide
      *
      *
@@ -86,14 +86,14 @@ interface TemporaryVirtualFileSystemInterface
 
 
     /**
-     * Adds a "remove" operation to the commit list for the given url and context.
+     * Adds a "remove" operation to the commit list for the given id and context.
      *
      * For more details see the heuristic section of the @page(TemporaryVirtualFileSystem conception notes).
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      */
-    public function remove(string $contextId, string $url);
+    public function remove(string $contextId, string $id);
 
     /**
      * Adds an "update" operation to the commit list for the file identified by the given parameters.
@@ -101,10 +101,10 @@ interface TemporaryVirtualFileSystemInterface
      * For more details see the heuristic section of the @page(TemporaryVirtualFileSystem conception notes).
      *
      * @param string $contextId
-     * @param string $url
+     * @param string $id
      * @param string $path
      * @param array $meta
      */
-    public function update(string $contextId, string $url, string $path, array $meta);
+    public function update(string $contextId, string $id, string $path, array $meta);
 
 }
