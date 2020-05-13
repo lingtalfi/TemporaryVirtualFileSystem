@@ -16,7 +16,7 @@ Description
 ================
 
 
-public [TemporaryVirtualFileSystem::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/update.md)(string $contextId, string $id, string $path, array $meta) : void
+public [TemporaryVirtualFileSystem::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/update.md)(string $contextId, string $id, string $path, array $meta, ?array $options = []) : void
 
 
 
@@ -24,6 +24,11 @@ public [TemporaryVirtualFileSystem::update](https://github.com/lingtalfi/Tempora
 Adds an "update" operation to the commit list for the file identified by the given parameters.
 
 For more details see the heuristic section of the [TemporaryVirtualFileSystem conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md).
+
+The options are:
+-  move: bool=false. Whether to move or copy the given path to the destination.
+
+You can pass some extra options to the concrete class via this options array.
 
 
 
@@ -45,6 +50,10 @@ Parameters
     
 
 - meta
+
+    
+
+- options
 
     
 

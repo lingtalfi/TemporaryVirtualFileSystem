@@ -85,12 +85,22 @@ interface TemporaryVirtualFileSystemInterface
      *
      * For more details see the heuristic section of the @page(TemporaryVirtualFileSystem conception notes).
      *
+     * The options are:
+     * -  move: bool=false. Whether to move or copy the given path to the destination.
+     *
+     *
+     *
+     * You can pass some extra options to the concrete class via this options array.
+     *
+     *
+     *
      * @param string $contextId
      * @param string $path
      * @param array $meta
+     * @param array $options
      * @return array
      */
-    public function add(string $contextId, string $path, array $meta): array;
+    public function add(string $contextId, string $path, array $meta, array $options = []): array;
 
 
     /**
@@ -108,12 +118,18 @@ interface TemporaryVirtualFileSystemInterface
      *
      * For more details see the heuristic section of the @page(TemporaryVirtualFileSystem conception notes).
      *
+     * The options are:
+     * -  move: bool=false. Whether to move or copy the given path to the destination.
+     *
+     * You can pass some extra options to the concrete class via this options array.
+     *
      * @param string $contextId
      * @param string $id
      * @param string $path
      * @param array $meta
+     * @param array $options
      */
-    public function update(string $contextId, string $id, string $path, array $meta);
+    public function update(string $contextId, string $id, string $path, array $meta, array $options = []);
 
 
 }

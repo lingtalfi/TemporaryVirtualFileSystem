@@ -123,7 +123,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * @implementation
      */
-    public function add(string $contextId, string $path, array $meta): array
+    public function add(string $contextId, string $path, array $meta, array $options = []): array
     {
         $id = $this->getFileId($contextId, $path, $meta);
         return $this->addEntry($contextId, $id, $path, $meta);
@@ -142,9 +142,9 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * @implementation
      */
-    public function update(string $contextId, string $id, string $path, array $meta)
+    public function update(string $contextId, string $id, string $path, array $meta, array $options = [])
     {
-        $this->updateEntry($contextId, $id, $path, $meta);
+        $this->updateEntry($contextId, $id, $path, $meta, $options);
     }
 
 
@@ -165,6 +165,8 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      * - type: string. The possible values are:
      *      - update: means that the operation is an update for a file that is not registered yet in the vfs (but probably exists
      *          on the real server)
+     * - move: bool=false. Whether to move or copy the file from the given path to the destination.
+     *
      *
      *
      * @param string $contextId
@@ -179,6 +181,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         $path = $this->getRealPath($path);
 
         $type = $options['type'] ?? 'add';
+        $useMove = (bool)($options['move'] ?? false);
 
 
         $opFile = $this->getContextDir($contextId) . "/operations.byml";
@@ -189,7 +192,17 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
 
         $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
-        FileSystemTool::copyFile($path, $this->getContextDir($contextId) . "/files/" . $relPath);
+        $dst = $this->getContextDir($contextId) . "/files/" . $relPath;
+
+
+        if ($path !== $dst) {
+            if (true === $useMove) {
+                FileSystemTool::move($path, $dst);
+            } else {
+                FileSystemTool::copyFile($path, $dst);
+            }
+        }
+
 
         $addOperation = [
             'type' => $type,
@@ -223,8 +236,13 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
 
         BabyYamlUtil::writeFile($ops, $opFile);
+
+
+        $this->onFileAddedAfter($contextId, $id, $path, $meta, $type, $dst);
+
         return $addOperation;
     }
+
 
     /**
      * Returns whether there is an non-deleted entry found in the the operations.byml file of the given context that matches the given id.
@@ -310,17 +328,24 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      *
      * Throws an exception if the file wasn't found, or in case of problems.
      *
+     * The options are:
+     *
+     * - move: bool=false. Whether to move or copy the file from the given path to the destination.
+     *
+     *
      * @param string $contextId
      * @param string $id
      * @param string $path
      * @param array $meta
+     * @param array $options
      */
-    protected function updateEntry(string $contextId, string $id, string $path, array $meta)
+    protected function updateEntry(string $contextId, string $id, string $path, array $meta, array $options = [])
     {
         $path = $this->getRealPath($path);
 
         $opFile = $this->getOperationsFile($contextId);
         $ops = BabyYamlUtil::readFile($opFile);
+        $useMove = (bool)($options['move'] ?? false);
 
 
         $found = false;
@@ -329,16 +354,28 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                 $found = true;
 
                 $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
-                FileSystemTool::copyFile($path, $this->getContextDir($contextId) . "/files/" . $relPath);
+                $dst = $this->getContextDir($contextId) . "/files/" . $relPath;
+
+                if ($path !== $dst) {
+                    if (true === $useMove) {
+                        FileSystemTool::move($path, $dst);
+                    } else {
+                        FileSystemTool::copyFile($path, $dst);
+                    }
+                }
 
 
                 $type = $op['type'];
                 switch ($type) {
                     case "add":
                     case "update":
+
+
                         $op['meta'] = $meta;
                         $op['path'] = $relPath;
                         $ops[$k] = $op;
+
+
                         break;
                     case "remove":
                         $ops[$k] = [
@@ -361,7 +398,12 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         } else {
             $ops = array_merge($ops);
             BabyYamlUtil::writeFile($ops, $opFile);
+
+            // we only call this when a file has been really added to our vfs
+            $this->onFileAddedAfter($contextId, $id, $path, $meta, $type, $dst);
         }
+
+
     }
 
     /**
@@ -448,6 +490,26 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     protected function getFileRelativePath(string $contextId, string $id, string $path, array $meta): string
     {
         return trim($path, '/');
+    }
+
+
+    /**
+     * Hook called after the file has been added to the virtual file system.
+     *
+     * Path is the absolute path to the source file being copied;
+     * dst is the absolute path to the copied file.
+     *
+     *
+     * @param string $contextId
+     * @param string $id
+     * @param string $path
+     * @param array $meta
+     * @param string $type
+     * @param string $dst
+     */
+    protected function onFileAddedAfter(string $contextId, string $id, string $path, array $meta, string $type, string $dst)
+    {
+
     }
 
 

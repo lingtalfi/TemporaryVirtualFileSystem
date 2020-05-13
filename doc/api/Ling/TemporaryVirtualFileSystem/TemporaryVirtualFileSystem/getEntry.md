@@ -66,7 +66,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L381-L402)
+See the source code for method [TemporaryVirtualFileSystem::getEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L423-L444)
 
 
 See Also

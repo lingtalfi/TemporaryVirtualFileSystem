@@ -16,7 +16,7 @@ Description
 ================
 
 
-abstract public [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md)(string $contextId, string $id, string $path, array $meta) : void
+abstract public [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md)(string $contextId, string $id, string $path, array $meta, ?array $options = []) : void
 
 
 
@@ -24,6 +24,11 @@ abstract public [TemporaryVirtualFileSystemInterface::update](https://github.com
 Adds an "update" operation to the commit list for the file identified by the given parameters.
 
 For more details see the heuristic section of the [TemporaryVirtualFileSystem conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md).
+
+The options are:
+-  move: bool=false. Whether to move or copy the given path to the destination.
+
+You can pass some extra options to the concrete class via this options array.
 
 
 
@@ -48,6 +53,10 @@ Parameters
 
     
 
+- options
+
+    
+
 
 Return values
 ================
@@ -63,7 +72,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L116-L116)
+See the source code for method [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L132-L132)
 
 
 See Also

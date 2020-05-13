@@ -61,7 +61,7 @@ Returns string.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getFileRelativePath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L448-L451)
+See the source code for method [TemporaryVirtualFileSystem::getFileRelativePath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L490-L493)
 
 
 See Also
@@ -69,5 +69,5 @@ See Also
 
 The [TemporaryVirtualFileSystem](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem.md) class.
 
-Previous method: [getOperationsFile](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getOperationsFile.md)<br>Next method: [getFileId](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getFileId.md)<br>
+Previous method: [getOperationsFile](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getOperationsFile.md)<br>Next method: [onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/onFileAddedAfter.md)<br>
 

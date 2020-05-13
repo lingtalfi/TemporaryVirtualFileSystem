@@ -130,9 +130,9 @@ The heuristics described below take that into account.
 - update:
     - If no entry exists with the same id then the entry is added with type=update.
     
-    - If an "add" entry already exists with the same id then the entry is updated, but it's type remains unchanged (type=add).
+    - If an "add" entry already exists with the same id then the entry is updated, but it's type remains unchanged (type=add). Any attached binary file is updated as well.
     
-    - If an "update" entry already exists with the same id then the entry is updated, and it's type remains unchanged (type=update).
+    - If an "update" entry already exists with the same id then the entry is updated, and it's type remains unchanged (type=update). Any attached binary file is updated as well.
     
     - If a "remove" entry already exists with the same id (note that it doesn't make much sense gui wise), the remove entry is (removed and) replaced with the new entry of type=update.
 

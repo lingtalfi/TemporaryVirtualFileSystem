@@ -1,6 +1,6 @@
 TemporaryVirtualFileSystem
 ===========
-2020-04-17 -> 2020-04-20
+2020-04-17 -> 2020-05-13
 
 
 
@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.2.2 -- 2020-05-13
+
+    - optimize TemporaryVirtualFileSystem copying files when not necessary
+    
 - 1.2.1 -- 2020-04-20
 
     - fix TemporaryVirtualFileSystem->removeEntry not removing the associated binary file

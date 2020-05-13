@@ -60,7 +60,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getEntryRealPathByOperation](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L509-L516)
+See the source code for method [TemporaryVirtualFileSystem::getEntryRealPathByOperation](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L571-L578)
 
 
 See Also
