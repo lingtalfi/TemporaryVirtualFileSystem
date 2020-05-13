@@ -230,12 +230,14 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                 }
             }
         }
+
+
         if (false === $found) {
-            $ops[] = $addOperation;
-        } else {
-            $this->onFileAddedAfter($contextId, $op, $path, $dst, $options);
-            $ops[$k] = $op;
+            $op = $addOperation;
+            $k = 0;
         }
+        $this->onFileAddedAfter($contextId, $op, $path, $dst, $options);
+        $ops[$k] = $op;
 
 
         BabyYamlUtil::writeFile($ops, $opFile);
@@ -393,9 +395,9 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         }
 
         if (false === $found) {
-            return $this->addEntry($contextId, $id, $path, $meta, [
+            return $this->addEntry($contextId, $id, $path, $meta, array_merge($options, [
                 "type" => "update",
-            ]);
+            ]));
         } else {
 
             // we only call this when a file has been really added to our vfs
@@ -511,7 +513,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      * @param string $dst
      * @param array $options
      */
-    protected function onFileAddedAfter(string $contextId, array &$operation, string $path, string $dst, array $options=[])
+    protected function onFileAddedAfter(string $contextId, array &$operation, string $path, string $dst, array $options = [])
     {
 
     }

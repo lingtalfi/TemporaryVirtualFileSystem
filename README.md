@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.4.1 -- 2020-05-13
+
+    - fix TemporaryVirtualFileSystem.onFileAddedAfter hook not called properly
+
 - 1.4.0 -- 2020-05-13
 
     - update TemporaryVirtualFileSystem.onFileAddedAfter hook method, now can update the operation
