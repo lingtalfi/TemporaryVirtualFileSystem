@@ -16,15 +16,17 @@ Description
 ================
 
 
-protected [TemporaryVirtualFileSystem::onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/onFileAddedAfter.md)(string $contextId, string $id, string $path, array $meta, string $type, string $dst) : void
+protected [TemporaryVirtualFileSystem::onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/onFileAddedAfter.md)(string $contextId, array &$operation, string $path, string $dst, ?array $options = []) : void
 
 
 
 
 Hook called after the file has been added to the virtual file system.
 
-Path is the absolute path to the source file being copied;
-dst is the absolute path to the copied file.
+
+- operation is the entry representing the file operation.
+- path is the absolute path to the source file being copied;
+- dst is the absolute path to the copied file.
 
 
 
@@ -37,7 +39,7 @@ Parameters
 
     
 
-- id
+- operation
 
     
 
@@ -45,15 +47,11 @@ Parameters
 
     
 
-- meta
-
-    
-
-- type
-
-    
-
 - dst
+
+    
+
+- options
 
     
 
@@ -72,7 +70,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L509-L512)
+See the source code for method [TemporaryVirtualFileSystem::onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L514-L517)
 
 
 See Also

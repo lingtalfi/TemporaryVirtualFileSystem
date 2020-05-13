@@ -126,7 +126,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     public function add(string $contextId, string $path, array $meta, array $options = []): array
     {
         $id = $this->getFileId($contextId, $path, $meta);
-        return $this->addEntry($contextId, $id, $path, $meta);
+        return $this->addEntry($contextId, $id, $path, $meta, $options);
     }
 
 
@@ -232,13 +232,14 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         }
         if (false === $found) {
             $ops[] = $addOperation;
+        } else {
+            $this->onFileAddedAfter($contextId, $op, $path, $dst, $options);
+            $ops[$k] = $op;
         }
 
 
         BabyYamlUtil::writeFile($ops, $opFile);
 
-
-        $this->onFileAddedAfter($contextId, $id, $path, $meta, $type, $dst);
 
         return $addOperation;
     }
@@ -396,11 +397,13 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                 "type" => "update",
             ]);
         } else {
-            $ops = array_merge($ops);
-            BabyYamlUtil::writeFile($ops, $opFile);
 
             // we only call this when a file has been really added to our vfs
-            $this->onFileAddedAfter($contextId, $id, $path, $meta, $type, $dst);
+            $this->onFileAddedAfter($contextId, $op, $path, $dst, $options);
+
+            $ops[$k] = $op;
+            $ops = array_merge($ops);
+            BabyYamlUtil::writeFile($ops, $opFile);
             return $op;
         }
     }
@@ -495,18 +498,20 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * Hook called after the file has been added to the virtual file system.
      *
-     * Path is the absolute path to the source file being copied;
-     * dst is the absolute path to the copied file.
+     *
+     * - operation is the entry representing the file operation.
+     * - path is the absolute path to the source file being copied;
+     * - dst is the absolute path to the copied file.
+     *
      *
      *
      * @param string $contextId
-     * @param string $id
+     * @param array $operation
      * @param string $path
-     * @param array $meta
-     * @param string $type
      * @param string $dst
+     * @param array $options
      */
-    protected function onFileAddedAfter(string $contextId, string $id, string $path, array $meta, string $type, string $dst)
+    protected function onFileAddedAfter(string $contextId, array &$operation, string $path, string $dst, array $options=[])
     {
 
     }

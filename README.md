@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.4.0 -- 2020-05-13
+
+    - update TemporaryVirtualFileSystem.onFileAddedAfter hook method, now can update the operation
+    
 - 1.3.0 -- 2020-05-13
 
     - update TemporaryVirtualFileSystemInterface.update method, now returns an array
