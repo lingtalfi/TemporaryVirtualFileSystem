@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.4.2 -- 2020-05-13
+
+    - fix TemporaryVirtualFileSystem.updateEntry not merging with old meta
+    
 - 1.4.1 -- 2020-05-13
 
     - fix TemporaryVirtualFileSystem.onFileAddedAfter hook not called properly

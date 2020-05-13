@@ -351,10 +351,14 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         $useMove = (bool)($options['move'] ?? false);
 
 
+
         $found = false;
         foreach ($ops as $k => $op) {
             if ($id === $op['id']) {
                 $found = true;
+
+
+                $meta = array_merge($op["meta"], $meta);
 
                 $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
                 $dst = $this->getContextDir($contextId) . "/files/" . $relPath;
@@ -372,13 +376,9 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                 switch ($type) {
                     case "add":
                     case "update":
-
-
                         $op['meta'] = $meta;
                         $op['path'] = $relPath;
                         $ops[$k] = $op;
-
-
                         break;
                     case "remove":
                         $ops[$k] = [
@@ -391,6 +391,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                 }
 
 
+                break;
             }
         }
 
@@ -399,7 +400,6 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                 "type" => "update",
             ]));
         } else {
-
             // we only call this when a file has been really added to our vfs
             $this->onFileAddedAfter($contextId, $op, $path, $dst, $options);
 
