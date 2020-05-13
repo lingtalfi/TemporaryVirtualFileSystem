@@ -34,7 +34,7 @@ abstract class <span class="pl-k">TemporaryVirtualFileSystemInterface</span>  {
     - abstract public [has](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/has.md)(string $contextId, string $id, ?array $allowedTypes = null) : bool
     - abstract public [add](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/add.md)(string $contextId, string $path, array $meta, ?array $options = []) : array
     - abstract public [remove](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/remove.md)(string $contextId, string $id) : void
-    - abstract public [update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md)(string $contextId, string $id, string $path, array $meta, ?array $options = []) : void
+    - abstract public [update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md)(string $contextId, string $id, string $path, array $meta, ?array $options = []) : array
 
 }
 
@@ -53,7 +53,7 @@ Methods
 - [TemporaryVirtualFileSystemInterface::has](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/has.md) &ndash; Returns whether the server has an entry identified by the given id and contextId.
 - [TemporaryVirtualFileSystemInterface::add](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/add.md) &ndash; For more details see the heuristic section of the [TemporaryVirtualFileSystem conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md).
 - [TemporaryVirtualFileSystemInterface::remove](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/remove.md) &ndash; Adds a "remove" operation to the commit list for the given id and context.
-- [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md) &ndash; Adds an "update" operation to the commit list for the file identified by the given parameters.
+- [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystemInterface/update.md) &ndash; and returns the updated entry, similar to the return of the add method's return (see the add method for more info).
 
 
 

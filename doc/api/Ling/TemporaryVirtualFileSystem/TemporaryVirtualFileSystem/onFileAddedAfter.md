@@ -72,7 +72,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L510-L513)
+See the source code for method [TemporaryVirtualFileSystem::onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L509-L512)
 
 
 See Also

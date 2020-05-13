@@ -61,7 +61,7 @@ Returns string.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getFileRelativePath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L490-L493)
+See the source code for method [TemporaryVirtualFileSystem::getFileRelativePath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L489-L492)
 
 
 See Also

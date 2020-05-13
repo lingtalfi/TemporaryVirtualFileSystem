@@ -7,7 +7,7 @@ TemporaryVirtualFileSystem::update
 
 
 
-TemporaryVirtualFileSystem::update — Adds an "update" operation to the commit list for the file identified by the given parameters.
+TemporaryVirtualFileSystem::update — and returns the updated entry, similar to the return of the add method's return (see the add method for more info).
 
 
 
@@ -16,12 +16,13 @@ Description
 ================
 
 
-public [TemporaryVirtualFileSystem::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/update.md)(string $contextId, string $id, string $path, array $meta, ?array $options = []) : void
+public [TemporaryVirtualFileSystem::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/update.md)(string $contextId, string $id, string $path, array $meta, ?array $options = []) : array
 
 
 
 
-Adds an "update" operation to the commit list for the file identified by the given parameters.
+Adds an "update" operation to the commit list for the file identified by the given parameters,
+and returns the updated entry, similar to the return of the add method's return (see the add method for more info).
 
 For more details see the heuristic section of the [TemporaryVirtualFileSystem conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md).
 
@@ -61,7 +62,7 @@ Parameters
 Return values
 ================
 
-Returns void.
+Returns array.
 
 
 

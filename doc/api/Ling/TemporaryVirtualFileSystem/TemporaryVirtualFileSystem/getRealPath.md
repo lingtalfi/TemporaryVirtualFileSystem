@@ -56,7 +56,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getRealPath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L551-L557)
+See the source code for method [TemporaryVirtualFileSystem::getRealPath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L550-L556)
 
 
 See Also

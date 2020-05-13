@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.3.0 -- 2020-05-13
+
+    - update TemporaryVirtualFileSystemInterface.update method, now returns an array
+    
 - 1.2.2 -- 2020-05-13
 
     - optimize TemporaryVirtualFileSystem copying files when not necessary

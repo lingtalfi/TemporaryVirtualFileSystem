@@ -142,9 +142,9 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * @implementation
      */
-    public function update(string $contextId, string $id, string $path, array $meta, array $options = [])
+    public function update(string $contextId, string $id, string $path, array $meta, array $options = []): array
     {
-        $this->updateEntry($contextId, $id, $path, $meta, $options);
+        return $this->updateEntry($contextId, $id, $path, $meta, $options);
     }
 
 
@@ -392,7 +392,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         }
 
         if (false === $found) {
-            $this->addEntry($contextId, $id, $path, $meta, [
+            return $this->addEntry($contextId, $id, $path, $meta, [
                 "type" => "update",
             ]);
         } else {
@@ -401,9 +401,8 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
             // we only call this when a file has been really added to our vfs
             $this->onFileAddedAfter($contextId, $id, $path, $meta, $type, $dst);
+            return $op;
         }
-
-
     }
 
     /**

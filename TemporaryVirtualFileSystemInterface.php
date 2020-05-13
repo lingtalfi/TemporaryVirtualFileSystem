@@ -114,7 +114,8 @@ interface TemporaryVirtualFileSystemInterface
     public function remove(string $contextId, string $id);
 
     /**
-     * Adds an "update" operation to the commit list for the file identified by the given parameters.
+     * Adds an "update" operation to the commit list for the file identified by the given parameters,
+     * and returns the updated entry, similar to the return of the add method's return (see the add method for more info).
      *
      * For more details see the heuristic section of the @page(TemporaryVirtualFileSystem conception notes).
      *
@@ -128,8 +129,9 @@ interface TemporaryVirtualFileSystemInterface
      * @param string $path
      * @param array $meta
      * @param array $options
+     * @return array
      */
-    public function update(string $contextId, string $id, string $path, array $meta, array $options = []);
+    public function update(string $contextId, string $id, string $path, array $meta, array $options = []): array;
 
 
 }
