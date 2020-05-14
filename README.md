@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.6.1 -- 2020-05-14
+
+    - fix TemporaryVirtualFileSystem->getRawOperations typo
+    
 - 1.6.0 -- 2020-05-14
 
     - add TemporaryVirtualFileSystem->getRawOperations method

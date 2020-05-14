@@ -490,7 +490,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
         $ret = [];
         $opFile = $this->getContextDir($contextId) . "/operations.byml";
-        if (false === file_exists($opFile)) {
+        if (true === file_exists($opFile)) {
             return BabyYamlUtil::readFile($opFile);
         }
         return $ret;
