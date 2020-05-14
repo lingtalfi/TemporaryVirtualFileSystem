@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.5.0 -- 2020-05-14
+
+    - add TemporaryVirtualFileSystem.doGetEntryRealPathByOperation
+    
 - 1.4.2 -- 2020-05-13
 
     - fix TemporaryVirtualFileSystem.updateEntry not merging with old meta

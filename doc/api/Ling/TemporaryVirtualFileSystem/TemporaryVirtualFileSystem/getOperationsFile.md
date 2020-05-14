@@ -49,7 +49,7 @@ Returns string.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getOperationsFile](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L469-L477)
+See the source code for method [TemporaryVirtualFileSystem::getOperationsFile](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L470-L478)
 
 
 See Also

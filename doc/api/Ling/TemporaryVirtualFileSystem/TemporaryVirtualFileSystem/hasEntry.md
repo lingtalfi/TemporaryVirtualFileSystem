@@ -57,7 +57,7 @@ Returns bool.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::hasEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L258-L273)
+See the source code for method [TemporaryVirtualFileSystem::hasEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L261-L276)
 
 
 See Also
