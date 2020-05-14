@@ -478,6 +478,25 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     }
 
 
+    /**
+     * Returns the array of operations, as stored in the operations file.
+     *
+     *
+     * @param string $contextId
+     * @return array
+     */
+    protected function getRawOperations(string $contextId): array
+    {
+
+        $ret = [];
+        $opFile = $this->getContextDir($contextId) . "/operations.byml";
+        if (false === file_exists($opFile)) {
+            return BabyYamlUtil::readFile($opFile);
+        }
+        return $ret;
+    }
+
+
     //--------------------------------------------
     // EXTEND
     //--------------------------------------------

@@ -1,6 +1,6 @@
 TemporaryVirtualFileSystem
 ===========
-2020-04-17 -> 2020-05-13
+2020-04-17 -> 2020-05-14
 
 
 
@@ -38,25 +38,29 @@ Summary
 History Log
 =============
 
+- 1.6.0 -- 2020-05-14
+
+    - add TemporaryVirtualFileSystem->getRawOperations method
+    
 - 1.5.0 -- 2020-05-14
 
-    - add TemporaryVirtualFileSystem.doGetEntryRealPathByOperation
+    - add TemporaryVirtualFileSystem->doGetEntryRealPathByOperation
     
 - 1.4.2 -- 2020-05-13
 
-    - fix TemporaryVirtualFileSystem.updateEntry not merging with old meta
+    - fix TemporaryVirtualFileSystem->updateEntry not merging with old meta
     
 - 1.4.1 -- 2020-05-13
 
-    - fix TemporaryVirtualFileSystem.onFileAddedAfter hook not called properly
+    - fix TemporaryVirtualFileSystem->onFileAddedAfter hook not called properly
 
 - 1.4.0 -- 2020-05-13
 
-    - update TemporaryVirtualFileSystem.onFileAddedAfter hook method, now can update the operation
+    - update TemporaryVirtualFileSystem->onFileAddedAfter hook method, now can update the operation
     
 - 1.3.0 -- 2020-05-13
 
-    - update TemporaryVirtualFileSystemInterface.update method, now returns an array
+    - update TemporaryVirtualFileSystemInterface->update method, now returns an array
     
 - 1.2.2 -- 2020-05-13
 
