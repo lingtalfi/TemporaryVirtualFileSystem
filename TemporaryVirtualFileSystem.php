@@ -292,6 +292,8 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
          * If the entry is found, we remove it directly from the operations.
          */
         $addTheDeleteEntry = true;
+        $realpath = null;
+        $op = null;
         foreach ($ops as $k => $op) {
             if ($id === $op['id']) {
                 $addTheDeleteEntry = false;
@@ -324,10 +326,13 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
             ];
         }
 
+        $this->onFileRemovedAfter($contextId, $id, $op, $realpath);
+
         $ops = array_merge($ops);
         BabyYamlUtil::writeFile($ops, $opFile);
 
     }
+
 
     /**
      * Updates the entry in the operations.byml file of the given context that matches the given id.
@@ -553,6 +558,25 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
     }
 
+    /**
+     * Hook called after the file has been removed from the virtual file system.
+     *
+     * - id: the file identifier
+     * - op: the operation if one was deleted, or null otherwise
+     * - realpath: the realpath of the deleted file if one was deleted, or null otherwise
+     *
+     *
+     *
+     *
+     * @param string $contextId
+     * @param string $id
+     * @param array|null $op
+     * @param string|null $realpath
+     */
+    protected function onFileRemovedAfter(string $contextId, string $id, ?array $op, ?string $realpath)
+    {
+
+    }
 
     /**
      * Returns the file id for the file identified by the given parameters.

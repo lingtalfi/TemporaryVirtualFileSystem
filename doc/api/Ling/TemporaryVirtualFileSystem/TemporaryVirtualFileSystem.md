@@ -4,7 +4,7 @@
 
 The TemporaryVirtualFileSystem class
 ================
-2020-04-17 --> 2020-05-14
+2020-04-17 --> 2020-05-15
 
 
 
@@ -77,6 +77,7 @@ abstract class <span class="pl-k">TemporaryVirtualFileSystem</span> implements [
     - protected [getFileRelativePath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getFileRelativePath.md)(string $contextId, string $id, string $path, array $meta) : string
     - protected [doGetEntryRealPathByOperation](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/doGetEntryRealPathByOperation.md)(string $contextId, array $operation, ?array $options = []) : string
     - protected [onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/onFileAddedAfter.md)(string $contextId, array &$operation, string $path, string $dst, ?array $options = []) : void
+    - protected [onFileRemovedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/onFileRemovedAfter.md)(string $contextId, string $id, array $op, string $realpath) : void
     - abstract protected [getFileId](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getFileId.md)(string $contextId, string $path, array $meta) : string
     - private [error](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/error.md)(string $msg) : void
     - private [getRealPath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getRealPath.md)(string $path) : string
@@ -122,6 +123,7 @@ Methods
 - [TemporaryVirtualFileSystem::getFileRelativePath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getFileRelativePath.md) &ndash; Returns the relative path (from the contextDir's files directory) of the uploaded file located by the given path.
 - [TemporaryVirtualFileSystem::doGetEntryRealPathByOperation](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/doGetEntryRealPathByOperation.md) &ndash; Returns the realpath of the file associated with the given operation entry.
 - [TemporaryVirtualFileSystem::onFileAddedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/onFileAddedAfter.md) &ndash; Hook called after the file has been added to the virtual file system.
+- [TemporaryVirtualFileSystem::onFileRemovedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/onFileRemovedAfter.md) &ndash; Hook called after the file has been removed from the virtual file system.
 - [TemporaryVirtualFileSystem::getFileId](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getFileId.md) &ndash; Returns the file id for the file identified by the given parameters.
 - [TemporaryVirtualFileSystem::error](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/error.md) &ndash; Throws an exception.
 - [TemporaryVirtualFileSystem::getRealPath](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/api/Ling/TemporaryVirtualFileSystem/TemporaryVirtualFileSystem/getRealPath.md) &ndash; Returns the realpath of the given path.
