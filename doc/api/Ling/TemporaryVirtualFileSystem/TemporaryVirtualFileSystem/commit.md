@@ -24,10 +24,10 @@ public [TemporaryVirtualFileSystem::commit](https://github.com/lingtalfi/Tempora
 Returns the commit list, which is the minimal list of operations to execute to reproduce the operations stored in the given context of this vfs.
 See the [TemporaryVirtualFileSystem conception notes](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/doc/pages/conception-notes.md) for more details.
 
-By default, it also removes the context directory and its content.
+By default, it also resets the context directory (i.e. remove the directory and its content).
 This behaviour can be changed with the options:
 
-- removeContextDir: bool=true
+- reset: bool=true
 
 
 

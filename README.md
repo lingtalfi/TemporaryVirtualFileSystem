@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.10.1 -- 2020-05-19
+
+    - change TemporaryVirtualFileSystemInterface->commit option name to reset
+    
 - 1.10.0 -- 2020-05-19
 
     - add TemporaryVirtualFileSystemInterface->commit options argument

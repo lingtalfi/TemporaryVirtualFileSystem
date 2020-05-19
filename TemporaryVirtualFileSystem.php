@@ -100,7 +100,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      */
     public function commit(string $contextId, array $options = []): array
     {
-        $remove = $options['removeContextDir'] ?? true;
+        $remove = $options['reset'] ?? true;
 
         $ops = $this->getRawOperations($contextId);
         foreach ($ops as $k => $op) {
@@ -109,7 +109,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
             }
         }
         if (true === $remove) {
-            FileSystemTool::remove($this->getContextDir($contextId));
+            $this->reset($contextId);
         }
         return $ops;
     }
