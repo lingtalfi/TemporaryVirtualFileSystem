@@ -50,7 +50,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::commit](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L101-L104)
+See the source code for method [TemporaryVirtualFileSystem::commit](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L101-L110)
 
 
 See Also

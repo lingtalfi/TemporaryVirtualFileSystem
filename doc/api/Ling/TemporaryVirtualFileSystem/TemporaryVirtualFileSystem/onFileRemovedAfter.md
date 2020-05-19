@@ -65,7 +65,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::onFileRemovedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L576-L579)
+See the source code for method [TemporaryVirtualFileSystem::onFileRemovedAfter](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L582-L585)
 
 
 See Also

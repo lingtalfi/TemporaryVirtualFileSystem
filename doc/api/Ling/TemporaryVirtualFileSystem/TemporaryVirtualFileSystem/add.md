@@ -75,7 +75,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::add](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L126-L130)
+See the source code for method [TemporaryVirtualFileSystem::add](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L132-L136)
 
 
 See Also

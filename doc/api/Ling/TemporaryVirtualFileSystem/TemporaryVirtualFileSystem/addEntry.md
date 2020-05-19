@@ -73,7 +73,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::addEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L179-L250)
+See the source code for method [TemporaryVirtualFileSystem::addEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L185-L256)
 
 
 See Also

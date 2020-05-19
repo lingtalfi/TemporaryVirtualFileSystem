@@ -71,7 +71,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::updateEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L353-L418)
+See the source code for method [TemporaryVirtualFileSystem::updateEntry](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L359-L424)
 
 
 See Also

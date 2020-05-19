@@ -73,7 +73,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L145-L148)
+See the source code for method [TemporaryVirtualFileSystem::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L151-L154)
 
 
 See Also

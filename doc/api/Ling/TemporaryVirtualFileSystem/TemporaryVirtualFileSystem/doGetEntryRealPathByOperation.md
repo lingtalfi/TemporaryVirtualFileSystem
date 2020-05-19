@@ -57,7 +57,7 @@ Returns string.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::doGetEntryRealPathByOperation](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L535-L538)
+See the source code for method [TemporaryVirtualFileSystem::doGetEntryRealPathByOperation](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L541-L544)
 
 
 See Also

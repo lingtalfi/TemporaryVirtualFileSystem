@@ -49,7 +49,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystem::getRawOperations](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L493-L502)
+See the source code for method [TemporaryVirtualFileSystem::getRawOperations](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystem.php#L499-L508)
 
 
 See Also
