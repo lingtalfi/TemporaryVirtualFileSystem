@@ -33,10 +33,17 @@ interface TemporaryVirtualFileSystemInterface
      * Returns the commit list, which is the minimal list of operations to execute to reproduce the operations stored in the given context of this vfs.
      * See the @page(TemporaryVirtualFileSystem conception notes) for more details.
      *
+     * By default, it also removes the context directory and its content.
+     * This behaviour can be changed with the options:
+     *
+     * - removeContextDir: bool=true
+     *
+     *
      * @param string $contextId
+     * @param array $options
      * @return array
      */
-    public function commit(string $contextId): array;
+    public function commit(string $contextId, array $options = []): array;
 
 
     /**

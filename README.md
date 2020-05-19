@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.10.0 -- 2020-05-19
+
+    - add TemporaryVirtualFileSystemInterface->commit options argument
+    
 - 1.9.0 -- 2020-05-19
 
     - add abs_path to the commit list

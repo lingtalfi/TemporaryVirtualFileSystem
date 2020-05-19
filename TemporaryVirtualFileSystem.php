@@ -98,13 +98,18 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * @implementation
      */
-    public function commit(string $contextId): array
+    public function commit(string $contextId, array $options = []): array
     {
+        $remove = $options['removeContextDir'] ?? true;
+
         $ops = $this->getRawOperations($contextId);
         foreach ($ops as $k => $op) {
             if ('delete' !== $op['type']) {
                 $ops[$k]['abs_path'] = $this->doGetEntryRealPathByOperation($contextId, $op);
             }
+        }
+        if (true === $remove) {
+            FileSystemTool::remove($this->getContextDir($contextId));
         }
         return $ops;
     }
