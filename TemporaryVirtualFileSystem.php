@@ -100,7 +100,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      */
     public function commit(string $contextId): array
     {
-        // TODO: Implement commit() method.
+        return $this->getRawOperations($contextId);
     }
 
     /**

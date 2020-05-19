@@ -1,6 +1,6 @@
 TemporaryVirtualFileSystem
 ===========
-2020-04-17 -> 2020-05-15
+2020-04-17 -> 2020-05-19
 
 
 
@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.8.0 -- 2020-05-19
+
+    - implement TemporaryVirtualFileSystem->commit
+    
 - 1.7.0 -- 2020-05-15
 
     - add TemporaryVirtualFileSystem->onFileRemovedAfter hook method
