@@ -131,14 +131,17 @@ interface TemporaryVirtualFileSystemInterface
      *
      * You can pass some extra options to the concrete class via this options array.
      *
+     * Note: if the given path is null, it means that the binary file didn't change.
+     *
+     *
      * @param string $contextId
      * @param string $id
-     * @param string $path
+     * @param string|null $path
      * @param array $meta
      * @param array $options
      * @return array
      */
-    public function update(string $contextId, string $id, string $path, array $meta, array $options = []): array;
+    public function update(string $contextId, string $id, ?string $path, array $meta, array $options = []): array;
 
 
 }

@@ -31,6 +31,8 @@ The options are:
 
 You can pass some extra options to the concrete class via this options array.
 
+Note: if the given path is null, it means that the binary file didn't change.
+
 
 
 
@@ -73,7 +75,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L141-L141)
+See the source code for method [TemporaryVirtualFileSystemInterface::update](https://github.com/lingtalfi/TemporaryVirtualFileSystem/blob/master/TemporaryVirtualFileSystemInterface.php#L144-L144)
 
 
 See Also

@@ -153,7 +153,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * @implementation
      */
-    public function update(string $contextId, string $id, string $path, array $meta, array $options = []): array
+    public function update(string $contextId, string $id, ?string $path, array $meta, array $options = []): array
     {
         return $this->updateEntry($contextId, $id, $path, $meta, $options);
     }
@@ -182,14 +182,16 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      *
      * @param string $contextId
      * @param string $id
-     * @param string $path
+     * @param string|null $path
      * @param array $meta
      * @param array $options
      * @return array
      */
-    protected function addEntry(string $contextId, string $id, string $path, array $meta, array $options = []): array
+    protected function addEntry(string $contextId, string $id, ?string $path, array $meta, array $options = []): array
     {
-        $path = $this->getRealPath($path);
+        if (null !== $path) {
+            $path = $this->getRealPath($path);
+        }
 
         $type = $options['type'] ?? 'add';
         $useMove = (bool)($options['move'] ?? false);
@@ -202,16 +204,20 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         }
 
 
-        $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
-        $dst = $this->getContextDir($contextId) . "/files/" . $relPath;
+        if (null !== $path) {
 
-
-        if ($path !== $dst) {
-            if (true === $useMove) {
-                FileSystemTool::move($path, $dst);
-            } else {
-                FileSystemTool::copyFile($path, $dst);
+            $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
+            $dst = $this->getContextDir($contextId) . "/files/" . $relPath;
+            if ($path !== $dst) {
+                if (true === $useMove) {
+                    FileSystemTool::move($path, $dst);
+                } else {
+                    FileSystemTool::copyFile($path, $dst);
+                }
             }
+        } else {
+            $relPath = null;
+            $dst = null;
         }
 
 
@@ -357,13 +363,15 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      *
      * @param string $contextId
      * @param string $id
-     * @param string $path
+     * @param string|null $path
      * @param array $meta
      * @param array $options
      */
-    protected function updateEntry(string $contextId, string $id, string $path, array $meta, array $options = [])
+    protected function updateEntry(string $contextId, string $id, ?string $path, array $meta, array $options = [])
     {
-        $path = $this->getRealPath($path);
+        if (null !== $path) {
+            $path = $this->getRealPath($path);
+        }
 
         $opFile = $this->getOperationsFile($contextId);
         $ops = BabyYamlUtil::readFile($opFile);
@@ -378,15 +386,23 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
                 $meta = array_merge($op["meta"], $meta);
 
-                $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
-                $dst = $this->getContextDir($contextId) . "/files/" . $relPath;
 
-                if ($path !== $dst) {
-                    if (true === $useMove) {
-                        FileSystemTool::move($path, $dst);
-                    } else {
-                        FileSystemTool::copyFile($path, $dst);
+                if (null !== $path) {
+
+
+                    $relPath = $this->getFileRelativePath($contextId, $id, $path, $meta);
+                    $dst = $this->getContextDir($contextId) . "/files/" . $relPath;
+
+                    if ($path !== $dst) {
+                        if (true === $useMove) {
+                            FileSystemTool::move($path, $dst);
+                        } else {
+                            FileSystemTool::copyFile($path, $dst);
+                        }
                     }
+                } else {
+                    $relPath = null;
+                    $dst = null;
                 }
 
 
@@ -560,11 +576,11 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      *
      * @param string $contextId
      * @param array $operation
-     * @param string $path
-     * @param string $dst
+     * @param string|null $path
+     * @param string|null $dst
      * @param array $options
      */
-    protected function onFileAddedAfter(string $contextId, array &$operation, string $path, string $dst, array $options = [])
+    protected function onFileAddedAfter(string $contextId, array &$operation, ?string $path, ?string $dst, array $options = [])
     {
 
     }

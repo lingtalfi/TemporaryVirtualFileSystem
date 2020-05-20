@@ -31,6 +31,8 @@ The options are:
 
 You can pass some extra options to the concrete class via this options array.
 
+Note: if the given path is null, it means that the binary file didn't change.
+
 
 
 

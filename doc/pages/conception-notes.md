@@ -1,6 +1,6 @@
 Temporary virtual file system, conception notes
 ==============
-2020-04-14 -> 2020-05-19
+2020-04-14 -> 2020-05-20
 
 
 
@@ -110,7 +110,7 @@ The **commit list** contains some extra information: the absolute paths to the s
 - id: string, the file identifier
 - type: string, the type of operation to execute on the real server (add, remove or update)
 - ?abs_path: string, the absolute path to the uploaded file
-- ?path: string, the relative path to the uploaded file
+- ?path: string|null, the relative path to the uploaded file. This must be provided with the **add** operation, but can be null with an **update** operation if the file didn't change (to save some cpu work)
 - ?meta: array, the meta attached to the file
 
 
