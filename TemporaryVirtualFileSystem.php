@@ -104,7 +104,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
 
         $ops = $this->getRawOperations($contextId);
         foreach ($ops as $k => $op) {
-            if ('delete' !== $op['type']) {
+            if ('remove' !== $op['type']) {
                 $ops[$k]['abs_path'] = $this->doGetEntryRealPathByOperation($contextId, $op);
             }
         }
@@ -263,7 +263,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
         BabyYamlUtil::writeFile($ops, $opFile);
 
 
-        return $addOperation;
+        return $op;
     }
 
 
@@ -449,7 +449,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      *
      * The options are:
      * - realpath: bool=false. If true, the **realpath** entry is added to the returned array, and contains the
-     *          realpath to the file. This only works if the operation type allows it (i.e. not delete).
+     *          realpath to the file. This only works if the operation type allows it (i.e. not remove).
      *
      *
      * @param string $contextId
@@ -652,7 +652,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
     /**
      * Returns the realpath of the file associated with the given operation entry.
      *
-     * Throws an exception if the operation doesn't have a file associated with it (i.e. delete operation).
+     * Throws an exception if the operation doesn't have a file associated with it (i.e. remove operation).
      *
      *
      * @param string $contextId
@@ -663,9 +663,9 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      */
     private function getEntryRealPathByOperation(string $contextId, array $operation, array $options = []): string
     {
-        if ('delete' === $operation['type']) {
+        if ('remove' === $operation['type']) {
             $id = $operation['id'];
-            $this->error("Cannot get realpath from a delete operation, with contextId=\"$contextId\" and id=\"$id\".");
+            $this->error("Cannot get realpath from a remove operation, with contextId=\"$contextId\" and id=\"$id\".");
         }
         return $this->doGetEntryRealPathByOperation($contextId, $operation, $options);
     }

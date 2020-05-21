@@ -1,6 +1,6 @@
 TemporaryVirtualFileSystem
 ===========
-2020-04-17 -> 2020-05-20
+2020-04-17 -> 2020-05-21
 
 
 
@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.11.1 -- 2020-05-21
+
+    - fix TemporaryVirtualFileSystem->addEntry returning wrong array
+    
 - 1.11.0 -- 2020-05-20
 
     - the path property of an update operation can now be null

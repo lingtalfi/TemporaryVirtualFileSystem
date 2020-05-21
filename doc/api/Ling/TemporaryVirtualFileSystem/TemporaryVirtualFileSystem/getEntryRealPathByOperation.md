@@ -23,7 +23,7 @@ private [TemporaryVirtualFileSystem::getEntryRealPathByOperation](https://github
 
 Returns the realpath of the file associated with the given operation entry.
 
-Throws an exception if the operation doesn't have a file associated with it (i.e. delete operation).
+Throws an exception if the operation doesn't have a file associated with it (i.e. remove operation).
 
 
 

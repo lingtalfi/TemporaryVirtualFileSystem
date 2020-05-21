@@ -25,7 +25,7 @@ Returns the entry in the operations.byml file of the given context that matches 
 
 The options are:
 - realpath: bool=false. If true, the **realpath** entry is added to the returned array, and contains the
-         realpath to the file. This only works if the operation type allows it (i.e. not delete).
+         realpath to the file. This only works if the operation type allows it (i.e. not remove).
 
 
 
