@@ -187,7 +187,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      * @param array $options
      * @return array
      */
-    protected function addEntry(string $contextId, string $id, ?string $path, array $meta, array $options = []): array
+    protected function addEntry(string $contextId, string $id, string $path, array $meta, array $options = []): array
     {
         if (null !== $path) {
             $path = $this->getRealPath($path);
@@ -411,7 +411,19 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
                     case "add":
                     case "update":
                         $op['meta'] = $meta;
-                        $op['path'] = $relPath;
+
+
+                        /**
+                         * The bottom line is that in the vfs entry, the path must be set (i.e. not null).
+                         * We allow for the user to pass path=null for an "update" action, for performances reasons, which means that the user
+                         * didn't change the file but might have updated the meta; however we still need to set the path
+                         * in the vfs entry.
+                         *
+                         * Therefore if the user passes path=null, we don't update the path (we keep the existing one)
+                         */
+                        if (null !== $relPath) {
+                            $op['path'] = $relPath;
+                        }
                         $ops[$k] = $op;
                         break;
                     case "remove":
@@ -627,7 +639,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      */
     private function error(string $msg)
     {
-        throw new TemporaryVirtualFileSystemException($msg);
+        throw new TemporaryVirtualFileSystemException("TemporaryVirtualFileSystem: " . $msg);
     }
 
 
@@ -667,6 +679,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
             $id = $operation['id'];
             $this->error("Cannot get realpath from a remove operation, with contextId=\"$contextId\" and id=\"$id\".");
         }
+
         return $this->doGetEntryRealPathByOperation($contextId, $operation, $options);
     }
 
