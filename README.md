@@ -1,6 +1,6 @@
 TemporaryVirtualFileSystem
 ===========
-2020-04-17 -> 2020-05-22
+2020-04-17 -> 2020-06-01
 
 
 
@@ -38,6 +38,10 @@ Summary
 History Log
 =============
 
+- 1.11.3 -- 2020-06-01
+
+    - fix TemporaryVirtualFileSystem->addEntry not allowing path=null
+    
 - 1.11.2 -- 2020-05-22
 
     - fix TemporaryVirtualFileSystem->updateEntry allowing path=null

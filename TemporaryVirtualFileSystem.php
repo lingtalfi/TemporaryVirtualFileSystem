@@ -187,7 +187,7 @@ abstract class TemporaryVirtualFileSystem implements TemporaryVirtualFileSystemI
      * @param array $options
      * @return array
      */
-    protected function addEntry(string $contextId, string $id, string $path, array $meta, array $options = []): array
+    protected function addEntry(string $contextId, string $id, ?string $path, array $meta, array $options = []): array
     {
         if (null !== $path) {
             $path = $this->getRealPath($path);
